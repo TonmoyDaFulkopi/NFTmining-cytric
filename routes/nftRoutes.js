@@ -1,6 +1,5 @@
-// routes/nftRoutes.js
 const express = require('express');
-const NFT = require('../models/NFT');
+const NFT = require('../models/NFT');  // Your NFT model
 
 const router = express.Router();
 
@@ -28,7 +27,7 @@ router.post('/store', async (req, res) => {
         await newNFT.save();
         res.status(201).json({ message: 'NFT data stored successfully', nft: newNFT });
     } catch (error) {
-        console.error(error);
+        console.error('Error storing NFT data:', error);
         res.status(500).json({ message: 'Error storing NFT data' });
     }
 });
@@ -47,7 +46,7 @@ router.get('/get/:nftId', async (req, res) => {
 
         res.status(200).json({ nft });
     } catch (error) {
-        console.error(error);
+        console.error('Error retrieving NFT data:', error);
         res.status(500).json({ message: 'Error retrieving NFT data' });
     }
 });
@@ -66,7 +65,7 @@ router.get('/gallery/:userWalletAddress', async (req, res) => {
 
         res.status(200).json({ nftGallery });
     } catch (error) {
-        console.error(error);
+        console.error('Error retrieving NFT gallery:', error);
         res.status(500).json({ message: 'Error retrieving NFT gallery' });
     }
 });
